@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
 const Login = () => {
-    const [value, setValue] =useState<Record<string, string>>({ 
+    const [value, setValue] =useState<Record<string, string>>({
         email: '',
         password: ''
       });
 
       const handleSubmit = (event: any) => {
         event.preventDefault();
-fetch('http://localhost:8000/api/login', {
+        fetch('http://localhost:8000/api/login', {
             body: JSON.stringify(value),
             headers: {
                 'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ fetch('http://localhost:8000/api/login', {
             alert(data.message);
             console.log(data);
          });
-       
+
     }
 
   return (
@@ -31,23 +31,25 @@ fetch('http://localhost:8000/api/login', {
                     <div className="card p-4">
                         <div className="form-group">
                             <label htmlFor="email">Email address:</label>
-                            <input 
-                            type="email" 
-                            className="form-control" 
-                            placeholder="Enter email" 
-                            id="email" 
-                            onChange={(event:any) =>  setValue(values => ({...values,[event.target.name]: event.target.value}))}
+                            <input
+                            type="email"
+                            className="form-control"
+                            placeholder="Enter email"
+                            id="email"
+                            name='email'
+                            onChange={(event:any) =>  setValue(values => ({ ...values, [event.target.name]: event.target.value }))}
                             />
                         </div>
 
                         <div className="form-group mt-3">
                             <label htmlFor="password">Password:</label>
-                            <input 
-                            type="password" 
-                            className="form-control" 
-                            placeholder="Enter password" 
-                            id="password" 
-                            onChange={(event:any) =>  setValue(values => ({...values,[event.target.name]: event.target.value}))}
+                            <input
+                            type="password"
+                            className="form-control"
+                            placeholder="Enter password"
+                            id="password"
+                            name='password'
+                            onChange={(event:any) =>  setValue(values => ({ ...values, [event.target.name]: event.target.value }))}
                             />
                         </div>
                         <button type="submit" className="btn btn-primary mt-4">Submit</button>

@@ -56,9 +56,9 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-        if(!$user || !Hash::check($request->password, $user->password)){
+        if(!$user || !Hash::check($request->password, $user->password)) {
             return response([
-                'message'=>['not a valid user']
+                'message'=>[' not a valid user']
             ], 404);
         }
         $token = $user->createToken('my-app-tokeh')->plainTextToken;
