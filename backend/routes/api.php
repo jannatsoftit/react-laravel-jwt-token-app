@@ -25,9 +25,10 @@ Route::delete('/users/{id}',[UserController::class, 'distroy']);
 Route::get('/users/{id}/edit',[UserController::class, 'edit']);
 Route::put('/users/{id}',[UserController::class, 'update']);
 
-Route::post('/register',[UserController::class, 'register']);
-Route::post('/login',[UserController::class, 'login']);
 
-// Route::post('/logout',[UserController::class, 'logout']);
+Route::post('/login',[UserController::class, 'login']);
+Route::post('/register',[UserController::class, 'register']);
+
+
 
 
