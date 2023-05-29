@@ -19,12 +19,19 @@ use App\Http\Controllers\UserController;
 //     return $request->user();
 // });
 
+
+//procted route
+Route::group(['middleware'=>['auth:sanctum']],function(){
+    Route::delete('/users/{id}',[UserController::class, 'distroy']);
+    Route::get('/users/{id}/edit',[UserController::class, 'edit']);
+    Route::put('/users/{id}',[UserController::class, 'update']);
+    Route::post('/logout',[UserController::class, 'logout']);
+});
+
+
+//public route
 Route::get('/users',[UserController::class, 'index']);
 Route::get('/users/{id}',[UserController::class, 'show']);
-Route::delete('/users/{id}',[UserController::class, 'distroy']);
-Route::get('/users/{id}/edit',[UserController::class, 'edit']);
-Route::put('/users/{id}',[UserController::class, 'update']);
-
 
 Route::post('/login',[UserController::class, 'login']);
 Route::post('/register',[UserController::class, 'register']);

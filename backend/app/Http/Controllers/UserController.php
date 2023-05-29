@@ -48,6 +48,7 @@ class UserController extends Controller
             'email'=>$request->email,
             'password'=>$request->password
          ]);
+
          return response()->json('successfully created');
     }
 
@@ -61,13 +62,20 @@ class UserController extends Controller
                 'message'=>[' not a valid user']
             ], 404);
         }
-        $token = $user->createToken('my-app-tokeh')->plainTextToken;
+        $token = $user->createToken('my-app-token')->plainTextToken;
 
         $response = [
             'user'=>$user,
             'token'=>$token,
         ];
         return response($response, 201);
+    }
+
+
+    public function logout(Register $register)
+    {
+        auth()->user()->tokens()->delete();
+        return ['message' => 'Logged Out'];
     }
 
 
